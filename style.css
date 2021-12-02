@@ -23,7 +23,7 @@ table {
 #cloud {
   width: 50px;
   height: 50px;
-  background: rgb(250, 250, 250);
+  background-color: rgb(250, 250, 250);
 }
 .dirt {
   width: 50px;
@@ -67,4 +67,67 @@ table {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+nav {
+  width: 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: black;
+}
+.pickaxe,
+.shovel,
+.axe {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pickaxe img,
+.shovel img,
+.axe img {
+  background-color: black;
+
+  border: white 3px solid;
+  padding: 5px;
+}
+.pickaxe p,
+.shovel p,
+.axe p {
+  margin-top: 1vh;
+  font-size: 1.2rem;
+  color: white;
+}
+.pickaxe {
+  margin-top: 100%;
+}
+.shovel {
+  margin-top: -5vh;
+}
+.shovel img {
+  height: 55%;
+  width: 100%;
+}
+.pickaxe img {
+  height: 50%;
+  width: 100%;
+}
+.axe img {
+  height: 55%;
+  width: 100%;
+}
+.axe {
+  margin-top: -2vh;
+}
+.inventory {
+  margin-top: 3rem;
+  width: 50px;
+  height: 50px;
+  border: 2px solid whitesmoke;
+}
+.inside-inventory {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
 }

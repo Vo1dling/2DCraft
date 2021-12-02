@@ -1,6 +1,78 @@
 const table = document.querySelector("#newWorld");
+const pickaxe = document.querySelector(".pickaxe");
+const axe = document.querySelector(".axe");
+const shovel = document.querySelector(".shovel");
+const storage = document.querySelector(".inside-inventory");
 
+const materials = {
+  wood: "oak",
+  clouds: "cloud",
+  dirt: "dirt",
+  grass: "grass",
+  cloud: "cloud",
+  leaves: "leaves",
+  cobble: "cobble",
+};
 const inventory = [];
+
+let pickIsSelected = false;
+pickaxe.addEventListener("click", () => {
+  pickIsSelected = true;
+  axeIsSelected = false;
+  shovelIsSelected = false;
+});
+let axeIsSelected = false;
+axe.addEventListener("click", () => {
+  axeIsSelected = true;
+  pickIsSelected = false;
+  shovelIsSelected = false;
+});
+let shovelIsSelected = false;
+shovel.addEventListener("click", () => {
+  shovelIsSelected = true;
+  pickIsSelected = false;
+  axeIsSelected = false;
+});
+
+const mineBlock = (e) => {
+  if (e.target.classList.value !== "block") {
+    if (pickIsSelected && e.target.classList[1] == materials.cobble) {
+      inventory.push(e.target.classList.value);
+      console.log(inventory);
+      e.target.classList = "";
+      storage.classList = "";
+      storage.classList.add(
+        "inside-inventory",
+        inventory[inventory.length - 1].split(" ")[1]
+      );
+    } else if (
+      axeIsSelected &&
+      (e.target.classList[1] == materials.wood ||
+        e.target.classList[1] == materials.leaves)
+    ) {
+      inventory.push(e.target.classList.value);
+      e.target.classList = "";
+      storage.classList = "";
+      storage.classList.add(
+        "inside-inventory",
+        inventory[inventory.length - 1].split(" ")[1]
+      );
+    } else if (
+      shovelIsSelected &&
+      (e.target.classList[1] == materials.dirt ||
+        e.target.classList[1] == materials.grass)
+    ) {
+      inventory.push(e.target.classList.value);
+      e.target.classList = "";
+      storage.classList = "";
+      storage.classList.add(
+        "inside-inventory",
+        inventory[inventory.length - 1].split(" ")[1]
+      );
+    }
+  }
+};
+
 for (let i = 0; i < 20; i++) {
   const tr = document.createElement("tr");
   table.appendChild(tr);
@@ -11,68 +83,66 @@ for (let i = 0; i < 20; i++) {
     div.id = "x:" + j + "_" + "y:" + i;
     div.className = "block";
     td.appendChild(div);
-    div.sy;
-    div.addEventListener("click", () => {
-      if (div.classList.value !== "block") {
-        inventory.push(div.classList.value);
-        console.log(div.classList.value);
-        console.log(inventory);
-        div.classList = "";
-      }
-    });
+    div.addEventListener("click", mineBlock);
     tr.appendChild(td);
     if (i === 15) {
-      div.className = "grass";
-      div.style.cursor = "pointer";
+      div.className = "block grass";
     }
     if (i >= 16) {
-      div.className = "dirt";
-      div.style.cursor = "pointer";
+      div.className = "block dirt";
     }
   }
 }
 
-// const matirials = {
-//   let cloud = document.className = "cloud"
-// }
-
-// console.log(document.getElementById("x:8_y:3"));
-document.getElementById("x:3_y:7").id = "cloud";
-document.getElementById("x:4_y:6").id = "cloud";
-document.getElementById("x:4_y:7").id = "cloud";
-document.getElementById("x:5_y:6").id = "cloud";
-document.getElementById("x:5_y:7").id = "cloud";
-document.getElementById("x:6_y:5").id = "cloud";
-document.getElementById("x:6_y:6").id = "cloud";
-document.getElementById("x:6_y:7").id = "cloud";
-document.getElementById("x:7_y:6").id = "cloud";
-document.getElementById("x:7_y:7").id = "cloud";
-document.getElementById("x:7_y:8").id = "cloud";
-document.getElementById("x:8_y:7").id = "cloud";
-document.getElementById("x:8_y:8").id = "cloud";
-document.getElementById("x:9_y:6").id = "cloud";
-document.getElementById("x:9_y:7").id = "cloud";
-document.getElementById("x:10_y:6").id = "cloud";
-document.getElementById("x:10_y:7").id = "cloud";
-
-document.getElementById("x:16_y:14").className = "oak";
-document.getElementById("x:16_y:13").className = "oak";
-document.getElementById("x:16_y:12").className = "oak";
-
-document.getElementById("x:16_y:11").className = "leaves";
-document.getElementById("x:16_y:10").className = "leaves";
-document.getElementById("x:16_y:9").className = "leaves";
-document.getElementById("x:15_y:11").className = "leaves";
-document.getElementById("x:15_y:10").className = "leaves";
-document.getElementById("x:15_y:9").className = "leaves";
-document.getElementById("x:17_y:11").className = "leaves";
-document.getElementById("x:17_y:10").className = "leaves";
-document.getElementById("x:17_y:9").className = "leaves";
-document.getElementById("x:3_y:14").className = "leaves";
-document.getElementById("x:2_y:14").className = "leaves";
-document.getElementById("x:4_y:14").className = "leaves";
-document.getElementById("x:3_y:13").className = "leaves";
-
-document.getElementById("x:13_y:14").className = "cobble";
-document.getElementById("x:14_y:14").className = "cobble";
-document.getElementById("x:19_y:14").className = "cobble";
+const create = (x, y, type) => {
+  if (type === "cobble") {
+    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.cobble);
+  } else if (type === "wood") {
+    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.wood);
+  } else if (type === "leaves") {
+    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.leaves);
+  } else if (type === "cloud") {
+    document.getElementById(`x:${x}_y:${y}`).id = materials.cloud;
+  }
+};
+// cobble
+create(13, 14, "cobble");
+create(14, 14, "cobble");
+create(19, 14, "cobble");
+// wood
+create(16, 14, "wood");
+create(16, 13, "wood");
+create(16, 12, "wood");
+create(4, 14, "wood");
+// leaves
+create(16, 11, "leaves");
+create(16, 10, "leaves");
+create(16, 9, "leaves");
+create(15, 11, "leaves");
+create(15, 10, "leaves");
+create(15, 9, "leaves");
+create(17, 11, "leaves");
+create(17, 10, "leaves");
+create(17, 9, "leaves");
+create(4, 14, "leaves");
+create(3, 14, "leaves");
+create(5, 14, "leaves");
+create(4, 13, "leaves");
+//cloud
+create(3, 7, "cloud");
+create(4, 6, "cloud");
+create(4, 7, "cloud");
+create(5, 6, "cloud");
+create(5, 7, "cloud");
+create(6, 5, "cloud");
+create(6, 6, "cloud");
+create(6, 7, "cloud");
+create(7, 6, "cloud");
+create(7, 7, "cloud");
+create(7, 8, "cloud");
+create(8, 7, "cloud");
+create(8, 8, "cloud");
+create(9, 6, "cloud");
+create(9, 7, "cloud");
+create(10, 6, "cloud");
+create(10, 7, "cloud");
