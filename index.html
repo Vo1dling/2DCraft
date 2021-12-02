@@ -5,21 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minecraft</title>
-    <script src="./index.js" defer></script>
-    <link rel="stylesheet" href="./style.css" />
+    <script src="./JS/index.js" defer></script>
+    <link rel="stylesheet" href="./CSS/style.css" />
   </head>
-  <body>
-    <div class="world-Container">
+  <body ondragstart="return false">
+    <div class="world-container">
       <table id="newWorld"></table>
     </div>
 
     <nav class="tool-menu">
       <div class="pickaxe">
-        <img src="/Imgs/pick.jpg" alt="" />
+        <img src="/Imgs/pick.png" alt="" />
         <p>Pickaxe</p>
       </div>
       <div class="shovel">
-        <img src="/Imgs/shovel.jpg" alt="" />
+        <img src="/Imgs/shovel.png" alt="" />
         <p>Shovel</p>
       </div>
       <div class="axe">
@@ -29,6 +29,7 @@
       <div class="inventory">
         <div class="inside-inventory"></div>
       </div>
+      <button type="button" class="reset-btn"><p>Reset</p></button>
     </nav>
   </body>
 </html>
