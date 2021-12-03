@@ -4,6 +4,7 @@ const axe = document.querySelector(".axe");
 const shovel = document.querySelector(".shovel");
 const storage = document.querySelector(".inside-inventory");
 const invButton = document.querySelector(".inventory");
+const landingPage = document.querySelector(".landing-page");
 const materials = {
   wood: "oak",
   clouds: "cloud",
@@ -85,6 +86,7 @@ const mineBlock = (e) => {
 
 const generateWorld = () => {
   table.innerHTML = "";
+  landingPage.style.display = "none";
   for (let i = 0; i < 20; i++) {
     const tr = document.createElement("tr");
     table.appendChild(tr);
@@ -176,6 +178,9 @@ toolButtons.forEach((tool) => {
 
 const resetButton = document.querySelector(".reset-btn");
 resetButton.addEventListener("click", generateWorld);
+
+const startButton = document.querySelector(".start-btn");
+startButton.addEventListener("click", generateWorld);
 
 const placeBlock = (e) => {
   const currBlock = inventory[inventory.length - 1];

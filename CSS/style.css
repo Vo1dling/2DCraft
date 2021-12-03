@@ -78,7 +78,6 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   background-color: black;
 }
 .pickaxe,
@@ -145,4 +144,52 @@ nav {
 #selected,
 #selected img {
   border-color: blue;
+}
+.landing-page {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  background: white;
+  display: flex;
+  padding: 10%;
+  align-items: center;
+  flex-direction: column;
+}
+.background {
+  background-image: url("/Imgs/Background.jpg");
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.landing-page h4 img {
+  width: 2%;
+}
+.landing-page h4 {
+  margin-top: 3rem;
+}
+
+.landing-page .start-btn {
+  animation: fadein 2s ease 1s 1 forwards;
+  opacity: 0;
+  padding: 15px 30px;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  background: #6f6f6f;
+  border: 1px solid black;
+  color: #fff;
+}
+.landing-page .start-btn:active {
+  background: #555;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
