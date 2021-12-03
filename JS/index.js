@@ -85,6 +85,7 @@ const mineBlock = (e) => {
 };
 
 const generateWorld = () => {
+  inventory.length = 0;
   table.innerHTML = "";
   landingPage.style.display = "none";
   for (let i = 0; i < 20; i++) {
@@ -94,7 +95,7 @@ const generateWorld = () => {
     for (let j = 0; j < 20; j++) {
       const td = document.createElement("td");
       const div = document.createElement("div");
-      div.id = "x:" + j + "_" + "y:" + i;
+      div.id = j + "," + i;
       div.className = "block";
       td.appendChild(div);
       div.addEventListener("click", mineBlock);
@@ -152,17 +153,17 @@ const generateWorld = () => {
 
 const create = (x, y, type) => {
   if (type === "cobble") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.cobble);
+    document.getElementById(`${x},${y}`).classList.add(materials.cobble);
   } else if (type === "wood") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.wood);
+    document.getElementById(`${x},${y}`).classList.add(materials.wood);
   } else if (type === "leaves") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.leaves);
+    document.getElementById(`${x},${y}`).classList.add(materials.leaves);
   } else if (type === "cloud") {
-    document.getElementById(`x:${x}_y:${y}`).id = materials.cloud;
+    document.getElementById(`${x},${y}`).id = materials.cloud;
   } else if (type === "dirt") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.dirt);
+    document.getElementById(`${x},${y}`).classList.add(materials.dirt);
   } else if (type === "grass") {
-    document.getElementById(`x:${x}_y:${y}`).classList.add(materials.grass);
+    document.getElementById(`${x},${y}`).classList.add(materials.grass);
   }
 };
 
@@ -183,9 +184,35 @@ const startButton = document.querySelector(".start-btn");
 startButton.addEventListener("click", generateWorld);
 
 const placeBlock = (e) => {
-  const currBlock = inventory[inventory.length - 1];
-  if (currBlock) {
-    e.target.className = currBlock;
-    inventory.pop();
+  if (InventoryIsSelected) {
+    let input = e.target.id;
+    let [x, y] = input.split(",");
+    const currBlock = inventory[inventory.length - 1];
+    if (currBlock == "block cobble") {
+      create(x, y, "cobble");
+      console.log("placed");
+      inventory.pop();
+    }
+    if (currBlock == "block dirt") {
+      create(x, y, "dirt");
+      console.log("placed");
+      inventory.pop();
+    }
+    if (currBlock == "block oak") {
+      create(x, y, "wood");
+      console.log("placed");
+      inventory.pop();
+    }
+    if (currBlock == "block leaves") {
+      create(x, y, "leaves");
+      console.log("placed");
+      inventory.pop();
+    }
+    if (currBlock == "block grass") {
+      create(x, y, "grass");
+      console.log("placed");
+      inventory.pop();
+    }
   }
 };
+table.addEventListener("click", placeBlock);
