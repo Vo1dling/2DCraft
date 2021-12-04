@@ -197,6 +197,21 @@ const placeBlock = (e) => {
       e.target.classList != "block oak"
     ) {
       create(x, y, "cobble");
+      if (inventory.length <= 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+      } else if (inventory.length > 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+        storage.classList.add(
+          "inside-inventory",
+          inventory[inventory.length - 2].split(" ")[1]
+        );
+      }
       console.log("placed");
       inventory.pop();
     }
@@ -209,6 +224,21 @@ const placeBlock = (e) => {
       e.target.classList != "block oak"
     ) {
       create(x, y, "dirt");
+      if (inventory.length <= 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+      } else if (inventory.length > 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+        storage.classList.add(
+          "inside-inventory",
+          inventory[inventory.length - 2].split(" ")[1]
+        );
+      }
       console.log("placed");
       inventory.pop();
     }
@@ -221,6 +251,21 @@ const placeBlock = (e) => {
       e.target.classList != "block oak"
     ) {
       create(x, y, "wood");
+      if (inventory.length <= 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+      } else if (inventory.length > 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+        storage.classList.add(
+          "inside-inventory",
+          inventory[inventory.length - 2].split(" ")[1]
+        );
+      }
       console.log("placed");
       inventory.pop();
     }
@@ -233,6 +278,21 @@ const placeBlock = (e) => {
       e.target.classList != "block oak"
     ) {
       create(x, y, "leaves");
+      if (inventory.length <= 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+      } else if (inventory.length > 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+        storage.classList.add(
+          "inside-inventory",
+          inventory[inventory.length - 2].split(" ")[1]
+        );
+      }
       console.log("placed");
       inventory.pop();
     }
@@ -245,9 +305,25 @@ const placeBlock = (e) => {
       e.target.classList != "block oak"
     ) {
       create(x, y, "grass");
+      if (inventory.length <= 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+      } else if (inventory.length > 1) {
+        storage.classList.remove(
+          "inside-inventory",
+          inventory[inventory.length - 1].split(" ")[1]
+        );
+        storage.classList.add(
+          "inside-inventory",
+          inventory[inventory.length - 2].split(" ")[1]
+        );
+      }
       console.log("placed");
       inventory.pop();
     }
+    console.log(currBlock);
   }
 };
 table.addEventListener("click", placeBlock);
