@@ -50,7 +50,7 @@ const mineBlock = (e) => {
     if (pickIsSelected && e.target.classList[1] == materials.cobble) {
       inventory.push(e.target.classList.value);
       console.log(inventory);
-      e.target.classList = "";
+      e.target.classList = "block";
       storage.classList = "";
       storage.classList.add(
         "inside-inventory",
@@ -62,7 +62,7 @@ const mineBlock = (e) => {
         e.target.classList[1] == materials.leaves)
     ) {
       inventory.push(e.target.classList.value);
-      e.target.classList = "";
+      e.target.classList = "block";
       storage.classList = "";
       storage.classList.add(
         "inside-inventory",
@@ -74,7 +74,7 @@ const mineBlock = (e) => {
         e.target.classList[1] == materials.grass)
     ) {
       inventory.push(e.target.classList.value);
-      e.target.classList = "";
+      e.target.classList = "block";
       storage.classList = "";
       storage.classList.add(
         "inside-inventory",
@@ -188,27 +188,62 @@ const placeBlock = (e) => {
     let input = e.target.id;
     let [x, y] = input.split(",");
     const currBlock = inventory[inventory.length - 1];
-    if (currBlock == "block cobble") {
+    if (
+      currBlock == "block cobble" &&
+      e.target.classList != "block leaves" &&
+      e.target.classList != "block cobble" &&
+      e.target.classList != "block dirt" &&
+      e.target.classList != "block grass" &&
+      e.target.classList != "block oak"
+    ) {
       create(x, y, "cobble");
       console.log("placed");
       inventory.pop();
     }
-    if (currBlock == "block dirt") {
+    if (
+      currBlock == "block dirt" &&
+      e.target.classList != "block leaves" &&
+      e.target.classList != "block cobble" &&
+      e.target.classList != "block dirt" &&
+      e.target.classList != "block grass" &&
+      e.target.classList != "block oak"
+    ) {
       create(x, y, "dirt");
       console.log("placed");
       inventory.pop();
     }
-    if (currBlock == "block oak") {
+    if (
+      currBlock == "block oak" &&
+      e.target.classList != "block leaves" &&
+      e.target.classList != "block cobble" &&
+      e.target.classList != "block dirt" &&
+      e.target.classList != "block grass" &&
+      e.target.classList != "block oak"
+    ) {
       create(x, y, "wood");
       console.log("placed");
       inventory.pop();
     }
-    if (currBlock == "block leaves") {
+    if (
+      currBlock == "block leaves" &&
+      e.target.classList != "block leaves" &&
+      e.target.classList != "block cobble" &&
+      e.target.classList != "block dirt" &&
+      e.target.classList != "block grass" &&
+      e.target.classList != "block oak"
+    ) {
       create(x, y, "leaves");
       console.log("placed");
       inventory.pop();
     }
-    if (currBlock == "block grass") {
+    if (
+      currBlock == "block grass" &&
+      e.target.classList != "block leaves" &&
+      e.target.classList != "block cobble" &&
+      e.target.classList != "block dirt" &&
+      e.target.classList != "block grass" &&
+      e.target.classList != "block oak"
+    ) {
       create(x, y, "grass");
       console.log("placed");
       inventory.pop();
